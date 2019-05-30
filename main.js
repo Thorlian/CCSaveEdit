@@ -105,8 +105,8 @@ function updateFromFile() {
     gEle("torso").value = getItemNameById(player.equip.torso);
     gEle("feet").value = getItemNameById(player.equip.feet);
 
-    for (var i = 0; i < player.itemFavs.length && i < 12; i++) {
-        gEle("favlist" + i).value = getItemNameById(player.itemFavs[i]);
+    for (var k = 0; k < player.itemFavs.length && k < 12; k++) {
+        gEle("favlist" + k).value = getItemNameById(player.itemFavs[k]);
     }
 
     /*var flags = saveFile.vars.storage.maps;
@@ -119,9 +119,11 @@ function updateFromFile() {
     gEle("bossGrand1").checked = flags["treeDng/f2/room-01"].apeDefeated;
     gEle("bossGrand2").checked = flags["treeDng/f4/boss"].apeDefeated;*/
 
-    for (var i = 0; i < items.length; i++) {
-        if (i >= player.items.length) player.items[i] == null;
-        gEle("item" + i).value = player.items[i];
+    for (var l = 0; l < items.length; l++) {
+        if (l >= player.items.length) {
+            player.items[l] = null;
+        }
+        gEle("item" + l).value = player.items[l];
     }
 }
 
@@ -203,13 +205,13 @@ function getItemNameById(n) {
     try {
         return items[n].name.en_US;
     } catch (e) {
-        console.warn('Item ', n, 'not found in en_US, trying de_DE...');
+        console.warn("Item ", n, "not found in en_US, trying de_DE...");
 
         try {
             return items[n].name.de_DE;
         } catch (e) {
-            console.error('Item ', n, 'not found in de_DE, giving up.');
-            return 'ITEM NOT FOUND';
+            console.error("Item ", n, "not found in de_DE, giving up.");
+            return "ITEM NOT FOUND";
         }
     }
 }
