@@ -1,121 +1,121 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>CrossCode Save Editor</title>
     <script src="c.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
+<div class="tab">
+    <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'file')" id="default">File</button>
+    <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'player')" id="onload">Player</button>
+    <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'inventory')">Inventory</button>
+    <!--<button class="tablinks" onclick="changeTab(event, 'tabcontent', 'flags')">Flags</button>-->
+    <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'decrypted')">Decrypted</button>
+    <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'spaced')">Spaced</button>
+</div>
+
+<div id="file" class="tabcontent">
+    <p>Press F10 in the game and then copy&paste the upper part into here.</p>
+    <div style="margin-top: 5px">
+        <textarea id="loadtext" rows=35 cols=80 onclick="this.focus();this.select()"></textarea></div>
+    <div>
+        <button id="load" onclick="load()">Load Save</button>
+    </div>
+    <p>After editing and saving copy this part again and paste into the lower part ingame</p>
+</div>
+
+<div id="player" class="tabcontent">
+    <button onclick="updateFromPlayer()" style="margin-bottom: 5px">Apply Changes</button>
+    <h3>Stats</h3>
+    <div class="indent">
+        <div class="zebra"><div class="textBoxAlign"><label>Level:<input id="level" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>EXP:<input id="exp" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>HP:<input id="hp" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>Credits:<input id="credits" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>SP Lvl:<input id="sp" type="text" class="textBoxAlign"></label></div></div>
+    </div>
+    <h3>Skill Points</h3>
+    <div class="indent">
+        <div class="zebra"><div class="textBoxAlign"><label>Neutral:<input id="skillneutral" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>Heat:<input id="skillheat" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>Cold:<input id="skillcold" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>Shock:<input id="skillshock" type="text" class="textBoxAlign"></label></div></div>
+        <div class="zebra"><div class="textBoxAlign"><label>Wave:<input id="skillwave" type="text" class="textBoxAlign"></label></div></div>
+    </div>
+    <h3>Equips</h3>
+    <div class="indent">
+        <div class="zebra"><div class="textBoxAlignEquip"><label>Head:<input id="head" type="text" class="textBoxAlignEquip"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignEquip"><label>Left Arm:<input id="leftarm" type="text" class="textBoxAlignEquip"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignEquip"><label>Right Arm:<input id="rightarm" type="text" class="textBoxAlignEquip"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignEquip"><label>Torso:<input id="torso" type="text" class="textBoxAlignEquip"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignEquip"><label>Feet:<input id="feet" type="text" class="textBoxAlignEquip"></label></div></div>
+    </div>
+    <h3>Favorite Consumables</h3>
+    <div class="indent">
+        <div class="zebra"><div class="textBoxAlignFavs"><label>1/12:<input id="favlist0" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>2/12:<input id="favlist1" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>3/12:<input id="favlist2" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>4/12:<input id="favlist3" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>5/12:<input id="favlist4" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>6/12:<input id="favlist5" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>7/12:<input id="favlist6" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>8/12:<input id="favlist7" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>9/12:<input id="favlist8" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>10/12:<input id="favlist9" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>11/12:<input id="favlist10" type="text" class="textBoxAlignFavs"></label></div></div>
+        <div class="zebra"><div class="textBoxAlignFavs"><label>12/12:<input id="favlist11" type="text" class="textBoxAlignFavs"></label></div></div>
+    </div>
+</div>
+
+<div id="inventory" class="tabcontent">
+    <button onclick="updateFromInventory()" style="margin-bottom: 5px">Apply Changes</button>
     <div class="tab">
-        <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'file')" id="default">File</button>
-        <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'player')" id="onload">Player</button>
-        <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'inventory')">Inventory</button>
-        <!--<button class="tablinks" onclick="changeTab(event, 'tabcontent', 'flags')">Flags</button>-->
-        <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'decrypted')">Decrypted</button>
-        <button class="tablinks" onclick="changeTab(event, 'tabcontent', 'spaced')">Spaced</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invHead')" id="defaultinv">Head</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invWeap')">Weapon</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invTorso')">Torso</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invFeet')">Feet</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invCons')">Consumable</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invKey')">Key</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invTrade')">Trade</button>
+        <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invOther')">Other</button>
     </div>
 
-    <div id="file" class="tabcontent">
-        <div><button id="load" onclick="load()">Load Save</button></div>
-        <div style="margin-top: 5px"><textarea id="loadtext" rows=35 cols=80 onclick="this.focus();this.select()"></textarea></div>
-    </div>
+    <div id="invHead" class="tabcontentinv"><p id="itemlist0"></p></div>
+    <div id="invWeap" class="tabcontentinv"><p id="itemlist1"></p></div>
+    <div id="invTorso" class="tabcontentinv"><p id="itemlist2"></p></div>
+    <div id="invFeet" class="tabcontentinv"><p id="itemlist3"></p></div>
+    <div id="invCons" class="tabcontentinv"><p id="itemlist4"></p></div>
+    <div id="invKey" class="tabcontentinv"><p id="itemlist5"></p></div>
+    <div id="invTrade" class="tabcontentinv"><p id="itemlist6"></p></div>
+    <div id="invOther" class="tabcontentinv"><p id="itemlist7"></p></div>
+</div>
 
-    <div id="player" class="tabcontent">
-        <button onclick="updateFromPlayer()" style="margin-bottom: 5px">Apply Changes</button>
-        <div>Stats</div>
-        <div class="indent">
-            <div class="textBoxAlign">Level:<input id="level" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">EXP:<input id="exp" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">HP:<input id="hp" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">Credits:<input id="credits" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">SP Lvl:<input id="sp" type="text" class="textBoxAlign"></div>
-        </div>
-        Skill Points
-        <div class="indent">
-            <div class="textBoxAlign">Neutral:<input id="skillneutral" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">Heat:<input id="skillheat" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">Cold:<input id="skillcold" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">Shock:<input id="skillshock" type="text" class="textBoxAlign"></div>
-            <div class="textBoxAlign">Wave:<input id="skillwave" type="text" class="textBoxAlign"></div>
-        </div>
-        Equips
-        <div class="indent">
-            <div class="textBoxAlignEquip">Head:<input id="head" type="text" class="textBoxAlignEquip"></div>
-            <div class="textBoxAlignEquip">Left Arm:<input id="leftarm" type="text" class="textBoxAlignEquip"></div>
-            <div class="textBoxAlignEquip">Right Arm:<input id="rightarm" type="text" class="textBoxAlignEquip"></div>
-            <div class="textBoxAlignEquip">Torso:<input id="torso" type="text" class="textBoxAlignEquip"></div>
-            <div class="textBoxAlignEquip">Feet:<input id="feet" type="text" class="textBoxAlignEquip"></div>
-        </div>
-    </div>
+<!--<div id="flags" class="tabcontent">
+    <button onclick="updateFromFlags()" style="margin-bottom: 5px">Apply Changes</button>
+    <div>Reset Boss Rooms</div>
+    <div class="indent">
+        <div class="textBoxAlignFlags">Infected Digmo:<input id="bossCold1" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">X01 Driller H.F.S.:<input id="bossCold2" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Pinzo'jrahrrrn:<input id="bossHeat1" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Master Magmoth:<input id="bossHeat2" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Plasma Phantom:<input id="bossWave" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Sir Blobus Starnikus:<input id="bossShock" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Son of the East:<input id="bossGrand1" type="checkbox" class="textBoxAlignFlags"></div>
+        <div class="textBoxAlignFlags">Ancient Guardian:<input id="bossGrand2" type="checkbox" class="textBoxAlignFlags"></div></div>
+</div>-->
 
-    <div id="inventory" class="tabcontent">
-        <button onclick="updateFromInventory()" style="margin-bottom: 5px">Apply Changes</button>
-        <div class="tab">
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invHead')" id="defaultinv">Head</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invWeap')">Weapon</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invTorso')">Torso</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invFeet')">Feet</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invCons')">Consumable</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invKey')">Key</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invTrade')">Trade</button>
-            <button class="tablinks" onclick="changeTab(event, 'tabcontentinv', 'invOther')">Other</button>
-        </div>
+<div id="decrypted" class="tabcontent">
+    <button onclick="updateFromDecrypted()" style="margin-bottom: 5px">Apply Changes</button>
+    <div><textarea id="savedecrypted" rows=37 cols=80></textarea></div>
+</div>
 
-        <div id="invHead" class="tabcontentinv">
-            <p id="itemlist0"></p>
-        </div>
-        <div id="invWeap" class="tabcontentinv">
-            <p id="itemlist1"></p>
-        </div>
-        <div id="invTorso" class="tabcontentinv">
-            <p id="itemlist2"></p>
-        </div>
-        <div id="invFeet" class="tabcontentinv">
-            <p id="itemlist3"></p>
-        </div>
-        <div id="invCons" class="tabcontentinv">
-            <p id="itemlist4"></p>
-        </div>
-        <div id="invKey" class="tabcontentinv">
-            <p id="itemlist5"></p>
-        </div>
-        <div id="invTrade" class="tabcontentinv">
-            <p id="itemlist6"></p>
-        </div>
-        <div id="invOther" class="tabcontentinv">
-            <p id="itemlist7"></p>
-        </div>
-    </div>
+<div id="spaced" class="tabcontent">
+    <button onclick="updateFromSpaced()" style="margin-bottom: 5px">Apply Changes</button>
+    <div><textarea id="savespaced" rows=37 cols=80></textarea></div>
+</div>
 
-    <!--<div id="flags" class="tabcontent">
-        <button onclick="updateFromFlags()" style="margin-bottom: 5px">Apply Changes</button>
-        <div>Reset Boss Rooms</div>
-        <div class="indent">
-            <div class="textBoxAlignFlags">Infected Digmo:<input id="bossCold1" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">X01 Driller H.F.S.:<input id="bossCold2" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Pinzo'jrahrrrn:<input id="bossHeat1" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Master Magmoth:<input id="bossHeat2" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Plasma Phantom:<input id="bossWave" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Sir Blobus Starnikus:<input id="bossShock" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Son of the East:<input id="bossGrand1" type="checkbox" class="textBoxAlignFlags"></div>
-            <div class="textBoxAlignFlags">Ancient Guardian:<input id="bossGrand2" type="checkbox" class="textBoxAlignFlags"></div>
-        </div>
-    </div>-->
-
-    <div id="decrypted" class="tabcontent">
-        <button onclick="updateFromDecrypted()" style="margin-bottom: 5px">Apply Changes</button>
-        <div><textarea id="savedecrypted" rows=37 cols=80></textarea></div>
-    </div>
-
-    <div id="spaced" class="tabcontent">
-        <button onclick="updateFromSpaced()" style="margin-bottom: 5px">Apply Changes</button>
-        <div><textarea id="savespaced" rows=37 cols=80></textarea></div>
-    </div>
-
-    <script type="text/javascript" src="itemj.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
-
 </html>
